@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thư Tiểu Quỷ Trừng Phạt Giả</title>
+    <link rel="stylesheet" href="https://fontsapi.zeoseven.com/292/main/result.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Noto Sans SC', 'Courier New', monospace;
+        background: transparent;
+        color: #e8e8f0;
+        line-height: 1.4;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        padding: 6px;
+        margin: 0;
+        image-rendering: pixelated;
+        font-size: 14px;
+      }
+
+      .pixel-frame {
+        background: #1a1a2e;
+        border: 4px solid #3d3d5c;
+        box-shadow:
+          inset 2px 2px 0 #5a5a7a,
+          inset -2px -2px 0 #16162a,
+          4px 4px 0 rgba(0, 0, 0, 0.4);
+        position: relative;
+      }
+
+      .pixel-frame::before,
+      .pixel-frame::after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: #00d4aa;
+      }
+
+      .pixel-frame::before {
+        top: 2px;
+        left: 2px;
+        box-shadow: calc(100% - 10px) 0 0 #00d4aa;
+      }
+
+      .pixel-frame::after {
+        bottom: 2px;
+        left: 2px;
+        box-shadow: calc(100% - 10px) 0 0 #00d4aa;
+      }
+
+      .frame-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+        background: linear-gradient(180deg, #252542 0%, #1a1a2e 100%);
+        border-bottom: 4px solid #3d3d5c;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .pixel-icon {
+        font-size: 20px;
+        color: #00d4aa;
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+      }
+
+      .header-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #e8e8f0;
+        letter-spacing: 0.15em;
+        text-shadow: 2px 2px 0 #16162a;
+      }
+
+      .author-info {
+        font-size: 11px;
+        color: #6a6a82;
+        letter-spacing: 0.1em;
+      }
+
+      .content-area {
+        padding: 12px;
+      }
+
+      .pixel-card {
+        background: #252542;
+        border: 4px solid #3d3d5c;
+        box-shadow:
+          inset 2px 2px 0 #5a5a7a,
+          inset -2px -2px 0 #16162a,
+          2px 2px 0 rgba(0, 0, 0, 0.25);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        position: relative;
+        margin-bottom: 12px;
+      }
+
+      .pixel-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow:
+          inset 2px 2px 0 #5a5a7a,
+          inset -2px -2px 0 #16162a,
+          4px 4px 0 rgba(0, 0, 0, 0.35);
+      }
+
+      .pixel-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent 0,
+          transparent 2px,
+          rgba(0, 0, 0, 0.03) 2px,
+          rgba(0, 0, 0, 0.03) 4px
+        );
+        pointer-events: none;
+        opacity: 0.5;
+      }
+
+      .card-header {
+        padding: 8px 12px;
+        background: #3d3d5c;
+        border-bottom: 2px solid #16162a;
+        font-size: 12px;
+        font-weight: 700;
+        color: #e8e8f0;
+        letter-spacing: 0.15em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .card-header.cyan {
+        background: linear-gradient(90deg, #00d4aa 0%, #00a88a 100%);
+        color: #000;
+      }
+
+      .card-header.pink {
+        background: linear-gradient(90deg, #f472b6 0%, #d946a6 100%);
+        color: #fff;
+      }
+
+      .card-header.purple {
+        background: linear-gradient(90deg, #a78bfa 0%, #8b5cf6 100%);
+        color: #fff;
+      }
+
+      .card-header.gold {
+        background: linear-gradient(90deg, #ffcc00 0%, #d4a500 100%);
+        color: #000;
+      }
+
+      .card-body {
+        padding: 12px;
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 10px;
+        background: #16162a;
+        border: 2px solid #3d3d5c;
+        margin-bottom: 6px;
+        transition: all 0.15s;
+      }
+
+      .info-row:hover {
+        background: #252542;
+        border-color: #00d4aa;
+        transform: translateX(2px);
+      }
+
+      .info-row:last-child {
+        margin-bottom: 0;
+      }
+
+      .info-label {
+        font-size: 11px;
+        color: #6a6a82;
+        display: flex;
+        align-items: center;
+      }
+
+      .info-label::before {
+        content: '▸';
+        margin-right: 6px;
+        color: #00d4aa;
+      }
+
+      .info-value {
+        font-size: 12px;
+        font-weight: 700;
+        color: #e8e8f0;
+      }
+
+      .preset-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .preset-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        background: #16162a;
+        border: 2px solid #3d3d5c;
+        transition: all 0.15s;
+      }
+
+      .preset-item:hover {
+        background: #252542;
+        border-color: #a78bfa;
+        transform: translate(-2px, 0);
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .preset-num {
+        font-size: 11px;
+        font-weight: 700;
+        color: #a78bfa;
+        width: 16px;
+        flex-shrink: 0;
+      }
+
+      .preset-text {
+        flex: 1;
+        font-size: 12px;
+        color: #e8e8f0;
+      }
+
+      .preset-note {
+        font-size: 11px;
+        color: #a0a0b8;
+        padding: 10px 12px;
+        background: #16162a;
+        border-left: 4px solid #a78bfa;
+        margin-top: 8px;
+      }
+
+      .community-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+      }
+
+      .community-card {
+        background: linear-gradient(135deg, #00d4aa 0%, #00a88a 100%);
+        color: #000;
+        padding: 20px 16px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        border: 4px solid #3d3d5c;
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+        position: relative;
+      }
+
+      .community-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+      }
+
+      .community-card:active {
+        transform: translate(2px, 2px);
+        box-shadow: none;
+      }
+
+      .community-icon {
+        font-size: 2em;
+        margin-bottom: 8px;
+      }
+
+      .community-title {
+        font-size: 1em;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .community-info {
+        font-size: 0.75em;
+        opacity: 0.9;
+        line-height: 1.5;
+      }
+
+      .opening-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 12px;
+      }
+
+      .opening-card {
+        background: #252542;
+        border: 4px solid #3d3d5c;
+        padding: 16px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        box-shadow:
+          inset 2px 2px 0 #5a5a7a,
+          inset -2px -2px 0 #16162a,
+          2px 2px 0 rgba(0, 0, 0, 0.25);
+        position: relative;
+      }
+
+      .opening-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #f472b6, transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .opening-card:hover::before {
+        opacity: 1;
+      }
+
+      .opening-card:hover {
+        transform: translate(-2px, -2px);
+        box-shadow:
+          inset 2px 2px 0 #5a5a7a,
+          inset -2px -2px 0 #16162a,
+          4px 4px 0 rgba(0, 0, 0, 0.35);
+        border-color: #f472b6;
+      }
+
+      .opening-card:active {
+        transform: translate(2px, 2px);
+        box-shadow:
+          inset 2px 2px 0 #5a5a7a,
+          inset -2px -2px 0 #16162a;
+      }
+
+      .opening-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #f472b6, #d946a6);
+        color: #fff;
+        padding: 4px 10px;
+        font-size: 0.7em;
+        margin-bottom: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+        text-transform: uppercase;
+      }
+
+      .opening-title {
+        font-size: 1.1em;
+        font-weight: 700;
+        color: #f472b6;
+        margin-bottom: 8px;
+      }
+
+      .opening-desc {
+        font-size: 0.85em;
+        color: #a0a0b8;
+        line-height: 1.6;
+      }
+
+      .notice-box {
+        padding: 12px;
+        background: #16162a;
+        border-left: 4px solid #ffcc00;
+        font-size: 0.9em;
+        line-height: 1.8;
+        color: #a0a0b8;
+      }
+
+      .notice-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+
+      .notice-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .footer-note {
+        text-align: center;
+        padding: 20px;
+        font-size: 1.3em;
+        font-weight: 700;
+        color: #00d4aa;
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+        background: #252542;
+        border: 4px solid #3d3d5c;
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+        position: relative;
+        margin-top: 12px;
+      }
+
+      .footer-note::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #00d4aa, transparent);
+      }
+
+      .footer-note::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #00d4aa, transparent);
+      }
+
+      @media (max-width: 768px) {
+        .community-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .opening-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pixel-frame">
+      <div class="frame-header">
+        <div class="header-left">
+          <span class="pixel-icon">⚔</span>
+          <span class="header-title">Thư Tiểu Quỷ Trừng Phạt Giả</span>
+        </div>
+        <div class="author-info">Tác giả: emo của lsp</div>
+      </div>
+
+      <div class="content-area">
+        <div class="pixel-card">
+          <div class="card-header pink">
+            <span>▸ Tuyên bố bản quyền</span>
+          </div>
+          <div class="card-body">
+            <div class="notice-box">
+              <div class="notice-item">
+                <span>📌</span>
+                <span
+                  >Thẻ nhân vật này là miễn phí, vĩnh viễn cấm các hành vi thương mại hóa. Nếu ngươi mua được nó, hãy yêu cầu hoàn tiền ngay lập tức và báo cáo kẻ bán hàng vô lương tâm cho nền tảng mua hàng, bảo vệ quyền lợi của tác giả và chính ngươi.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pixel-card">
+          <div class="card-header pink">
+            <span>▸ Tuyên bố đăng lại</span>
+          </div>
+          <div class="card-body">
+            <div class="notice-box">
+              <div class="notice-item">
+                <span>⚠</span>
+                <span>Khi chưa được tác giả ủy quyền rõ ràng, nghiêm cấm đăng lại tác phẩm này sang bất kỳ nền tảng nào khác.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pixel-card">
+          <div class="card-header cyan">
+            <span>▸ Giới thiệu nhân vật</span>
+          </div>
+          <div class="card-body">
+            <div class="info-row">
+              <span class="info-label">Tên nhân vật</span>
+              <span class="info-value">{{user}}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Định vị nhân vật</span>
+              <span class="info-value">Trừng Phạt Giả, người thực hiện dự án bí mật của chính quyền thành phố</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Trạng thái hiện tại</span>
+              <span class="info-value">Vừa đạt được tư cách Trừng Phạt Giả, chuẩn bị nhận nhiệm vụ</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pixel-card">
+          <div class="card-header purple">
+            <span>▸ Thiết lập tùy chọn</span>
+          </div>
+          <div class="card-body">
+            <div class="preset-list">
+              <div class="preset-item">
+                <span class="preset-num">1</span>
+                <span class="preset-text">Học sinh Trạch Nam</span>
+              </div>
+              <div class="preset-item">
+                <span class="preset-num">2</span>
+                <span class="preset-text">Đại thúc trung niên</span>
+              </div>
+              <div class="preset-item">
+                <span class="preset-num">3</span>
+                <span class="preset-text">Giáo viên trường học</span>
+              </div>
+              <div class="preset-item">
+                <span class="preset-num">4</span>
+                <span class="preset-text">Cảnh sát chính nghĩa</span>
+              </div>
+              <div class="preset-item">
+                <span class="preset-num">5</span>
+                <span class="preset-text">Lão nhân độc cư</span>
+              </div>
+            </div>
+            <div class="preset-note">World Info có 5 thiết lập nhân vật user tùy chọn, tất nhiên ngươi cũng có thể tắt đi và sử dụng thiết lập của riêng mình</div>
+          </div>
+        </div>
+
+        <div class="pixel-card">
+          <div class="card-header cyan">
+            <span>▸ Tham gia cộng đồng</span>
+          </div>
+          <div class="card-body">
+            <div class="community-grid">
+              <div class="community-card" onclick="copyQQGroup()">
+                <div class="community-icon">🐧</div>
+                <div class="community-title">Nhóm QQ</div>
+                <div class="community-info">Nhấn để sao chép mã nhóm<br />😅Vào rồi thoát ngay thì vào làm gì?</div>
+              </div>
+              <div class="community-card" onclick="openDiscordWithConfirm()">
+                <div class="community-icon">💬</div>
+                <div class="community-title">Máy chủ Discord</div>
+                <div class="community-info">Nhấn để mở liên kết</div>
+              </div>
+            </div>
+            <div class="preset-note" style="margin-top: 12px">
+              Phát hành thẻ sẽ có thông báo, hoan nghênh tham gia tán gẫu——liên quan đến SillyTavern... hoặc nhiều hơn...
+            </div>
+          </div>
+        </div>
+
+        <div class="pixel-card">
+          <div class="card-header pink">
+            <span>▸ Mở đầu câu chuyện</span>
+          </div>
+          <div class="card-body">
+            <div class="opening-grid">
+              <div class="opening-card" onclick="switchToOpening(1)">
+                <div class="opening-badge">Nhập môn tân thủ</div>
+                <div class="opening-title">Nhiệm vụ đầu tiên</div>
+                <div class="opening-desc">
+                  Ngươi vừa thông qua cuộc tuyển chọn bí mật của chính quyền thành phố, trở thành Trừng Phạt Giả duy nhất của thành phố này. Trên điện thoại đã cài đặt APP đặc biệt, bên trong đã xuất hiện hồ sơ chi tiết của mục tiêu đầu tiên. Ngươi được hưởng quyền miễn trừ pháp lý hoàn toàn, có thể dùng bất kỳ thủ đoạn nào để uốn nắn những Thư Tiểu Quỷ ngang ngược này. Bây giờ, là lúc bắt đầu sự trừng phạt đầu tiên của ngươi rồi.
+                </div>
+              </div>
+
+              <div class="opening-card" onclick="switchToOpening(2)">
+                <div class="opening-badge">Đại lão mãn cấp</div>
+                <div class="opening-title">Trừng Phạt Giả truyền thuyết</div>
+                <div class="opening-desc">
+                  Ngươi đã là Trừng Phạt Giả cấp truyền thuyết của thành phố này, sở hữu đẳng cấp cao nhất của tất cả năng lực đặc biệt. Vô số Thư Tiểu Quỷ đã bị uốn nắn triệt để dưới tay ngươi, cái tên của ngươi trong lòng các nàng vừa là nỗi sợ hãi vừa là điều cấm kỵ. Điểm trừng phạt dư dả, đạo cụ đầy đủ, kỹ năng mãn cấp. Bây giờ, lại có mục tiêu mới xuất hiện trong APP của ngươi, chờ đợi sự trừng phạt của ngươi.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pixel-card">
+          <div class="card-header gold">
+            <span>▸ Đọc kỹ trước khi dùng</span>
+          </div>
+          <div class="card-body">
+            <div class="notice-box">
+              <div class="notice-item">
+                <span>✅</span>
+                <span>Bắt buộc cài đặt và kích hoạt [Mẫu Prompt/Ghi chú của tác giả]</span>
+              </div>
+              <div class="notice-item">
+                <span>✅</span>
+                <span>Bắt buộc cài đặt và cập nhật [Trợ lý quán rượu/ST Extensions] lên bản mới nhất</span>
+              </div>
+              <div class="notice-item">
+                <span>❌</span>
+                <span>Bắt buộc tắt [Công tắc Render] của Tiểu Bạch X, nếu chưa cài thì bỏ qua</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-note">Đã chuẩn bị sẵn sàng để bắt đầu trừng phạt chưa?</div>
+      </div>
+    </div>
+
+    <script>
+      function copyQQGroup() {
+        const groupNumber = '151611202';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(groupNumber)
+            .then(() => {
+              if (typeof triggerSlash === 'function') {
+                triggerSlash('/echo severity=success Đã sao chép mã nhóm QQ vào bộ nhớ đệm!');
+              } else {
+                alert('Đã sao chép mã nhóm QQ: ' + groupNumber);
+              }
+            })
+            .catch(() => {
+              fallbackCopy(groupNumber);
+            });
+        } else {
+          fallbackCopy(groupNumber);
+        }
+      }
+
+      function fallbackCopy(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          if (typeof triggerSlash === 'function') {
+            triggerSlash('/echo severity=success Đã sao chép mã nhóm QQ vào bộ nhớ đệm!');
+          } else {
+            alert('Đã sao chép mã nhóm QQ: ' + text);
+          }
+        } catch (err) {
+          if (typeof triggerSlash === 'function') {
+            triggerSlash('/echo severity=error Sao chép thất bại, vui lòng sao chép thủ công mã nhóm: 151611202');
+          } else {
+            alert('Sao chép thất bại, vui lòng sao chép thủ công mã nhóm: 151611202');
+          }
+        }
+        document.body.removeChild(textArea);
+      }
+
+      function openDiscordWithConfirm() {
+        if (confirm('Sắp chuyển hướng đến máy chủ Discord, có tiếp tục không?')) {
+          window.open('https://discord.gg/x3aKHgfE3u', '_blank');
+        }
+      }
+
+      async function switchToOpening(swipeId) {
+        const cards = document.querySelectorAll('.opening-card');
+        const clickedCard = event.currentTarget;
+
+        if (clickedCard) {
+          clickedCard.style.opacity = '0.6';
+          clickedCard.style.pointerEvents = 'none';
+        }
+
+        try {
+          const messages = await getChatMessages('0', { include_swipe: true });
+          if (messages && messages[0].swipes && messages[0].swipes[swipeId]) {
+            await setChatMessage(messages[0].swipes[swipeId], 0, {
+              swipe_id: swipeId,
+              refresh: 'display_and_render_current',
+            });
+          } else {
+            throw new Error(`Không tìm thấy lời mở đầu ${swipeId}, vui lòng đảm bảo đã thêm tất cả lời mở đầu theo thứ tự.`);
+          }
+        } catch (error) {
+          console.error('Chuyển đổi lời mở đầu thất bại:', error);
+          alert(`Chuyển đổi thất bại: ${error.message}`);
+          if (clickedCard) {
+            clickedCard.style.opacity = '1';
+            clickedCard.style.pointerEvents = 'auto';
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
